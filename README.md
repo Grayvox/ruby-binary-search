@@ -4,8 +4,8 @@ This includes both depth-first and breadth-first approaches to searching a BST.
 
 The following methods are included in this project:
 
-- [ ] `#build_tree(array)` -- takes an array of data and returns a balanced tree of `Node` objects, and returns the level 0 root node.
-- [ ] `#pretty_print` -- returns a visually pleasing showcase of the tree.
+- [x] `#build_tree(array)` -- takes an array of data and returns a balanced tree of `Node` objects, and returns the level 0 root node.
+- [x] `#pretty_print` -- returns a visually pleasing showcase of the tree.
 - [ ] `#insert(value)` -- inserts the value provided into the tree, keeping it balanced.
 - [ ] `#delete(value)` -- deletes the value provided if it is in the tree, keeping it balanced afterwards. Returns nil if the value is not found.
 - [ ] `#find(value)` -- searches through the tree to find the value provided. Returns nil if the value is not found
