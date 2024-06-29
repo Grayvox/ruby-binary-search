@@ -6,7 +6,7 @@ The following methods are included in this project:
 
 - [x] `#build_tree(array)` -- takes an array of data and returns a balanced tree of `Node` objects, and returns the level 0 root node.
 - [x] `#pretty_print` -- returns a visually pleasing showcase of the tree.
-- [ ] `#insert(value)` -- inserts the value provided into the tree, keeping it balanced.
+- [x] `#insert(value)` -- inserts the value provided into the tree, keeping it balanced.
 - [ ] `#delete(value)` -- deletes the value provided if it is in the tree, keeping it balanced afterwards. Returns nil if the value is not found.
 - [ ] `#find(value)` -- searches through the tree to find the value provided. Returns nil if the value is not found
 - [ ] `#level_order(&block)` -- traverses the tree in breadth-first level order and yields each node to the provided block. Returns an array of values if no block is given. Also uses an array acting as a queue to keep track of all the child nodes that it has yet to traverse and will add new ones to the list when needed.
