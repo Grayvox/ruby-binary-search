@@ -19,7 +19,7 @@ class Tree
     balance_tree(array, 0, last)
   end
 
-  def pretty_print(node = @root, prefix = '', is_left = true)
+  def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
@@ -39,6 +39,3 @@ class Tree
     root
   end
 end
-
-tree = Tree.new([1, 2, 3, 4, 5])
-tree.pretty_print
