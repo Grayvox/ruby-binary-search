@@ -33,6 +33,13 @@ class Tree
     @root = build_tree(@array)
   end
 
+  def delete(value)
+    return nil if value.nil?
+
+    @array.delete(value)
+    @root = build_tree(@array)
+  end
+
   private
 
   def balance_tree(array, first, last)
