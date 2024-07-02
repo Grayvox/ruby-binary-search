@@ -8,7 +8,7 @@ The following methods are included in this project:
 - [x] `#pretty_print` -- returns a visually pleasing showcase of the tree.
 - [x] `#insert(value)` -- inserts the value provided into the tree, keeping it balanced.
 - [x] `#delete(value)` -- deletes the value provided if it is in the tree, keeping it balanced afterwards. Returns nil if the value is not found.
-- [ ] `#find(value)` -- searches through the tree to find the value provided. Returns nil if the value is not found
+- [x] `#find(value)` -- searches through the tree to find the value provided. Returns nil if the value is not found
 - [ ] `#level_order(&block)` -- traverses the tree in breadth-first level order and yields each node to the provided block. Returns an array of values if no block is given. Also uses an array acting as a queue to keep track of all the child nodes that it has yet to traverse and will add new ones to the list when needed.
 - [ ] `#inorder(&block)` -- traverses the tree in depth-first using inorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [ ] `#preorder(&block)` -- traverses the tree in depth-first using preorder traversal and yields each node to the provided block. Returns an array of values if no block is given.

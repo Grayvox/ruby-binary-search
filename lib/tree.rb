@@ -30,11 +30,11 @@ class Tree
     return Node.new(value) if node.nil?
 
     case value <=> node.data
-    when -1 # It is less than
+    when -1
       node.left = insert(value, node.left)
-    when 1 # It is greater than
+    when 1
       node.right = insert(value, node.right)
-    when 0 # It is equal to
+    when 0
       node
     end
 
@@ -63,6 +63,19 @@ class Tree
   end
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
+
+  def find(value, node = @root)
+    return nil if node.nil?
+
+    case value <=> node.data
+    when -1
+      node.left = find(value, node.left)
+    when 1
+      node.right = find(value, node.right)
+    when 0
+      node
+    end
+  end
 
   private
 
