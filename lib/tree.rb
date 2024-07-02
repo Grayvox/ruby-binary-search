@@ -29,21 +29,40 @@ class Tree
   def insert(value, node = @root)
     return Node.new(value) if node.nil?
 
-    if value < node.data
+    case value <=> node.data
+    when -1 # It is less than
       node.left = insert(value, node.left)
-    else
+    when 1 # It is greater than
       node.right = insert(value, node.right)
+    when 0 # It is equal to
+      node
     end
 
     node
   end
 
-  def delete(value)
-    return nil if value.nil?
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+  def delete(value, node = @root)
+    return node unless node
 
-    @array.delete(value)
-    @root = build_tree(@array)
+    case value <=> node.data
+    when -1
+      node.left = delete(value, node.left)
+    when 1
+      node.right = delete(value, node.right)
+    when 0
+      return node.right if node.left.nil?
+      return node.left if node.right.nil?
+
+      node.data = min_value(node.right)
+      node.right = delete(min_value(node.right), node.right)
+    end
+
+    node
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   private
 
@@ -57,5 +76,11 @@ class Tree
     root.right = balance_tree(array, middle + 1, last)
 
     root
+  end
+
+  def min_value(node, min = node.data)
+    min_value(node.left, node.left.data) if node.left
+
+    min
   end
 end
