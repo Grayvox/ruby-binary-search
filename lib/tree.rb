@@ -26,11 +26,16 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
-  def insert(value)
-    return nil if value.nil?
+  def insert(value, node = @root)
+    return Node.new(value) if node.nil?
 
-    @array << value
-    @root = build_tree(@array)
+    if value < node.data
+      node.left = insert(value, node.left)
+    else
+      node.right = insert(value, node.right)
+    end
+
+    node
   end
 
   def delete(value)
