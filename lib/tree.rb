@@ -69,9 +69,9 @@ class Tree
 
     case value <=> node.data
     when -1
-      node.left = find(value, node.left)
+      find(value, node.left)
     when 1
-      node.right = find(value, node.right)
+      find(value, node.right)
     when 0
       node
     end
