@@ -118,6 +118,14 @@ class Tree
     result
   end
 
+  def postorder(node = @root, result = [], &block)
+    return if node.nil?
+
+    postorder(node.left, result, &block)
+    postorder(node.right, result, &block)
+    check_for_block(node, result, &block)
+  end
+
   private
 
   def balance_tree(array, first, last)
