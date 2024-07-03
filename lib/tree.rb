@@ -26,43 +26,15 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
-  def insert(value, node = @root)
-    return Node.new(value) if node.nil?
-
-    case value <=> node.data
-    when -1
-      node.left = insert(value, node.left)
-    when 1
-      node.right = insert(value, node.right)
-    when 0
-      node
-    end
-
-    node
+  def insert(value)
+    internal_insert(value)
+    rebalance
   end
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
-  def delete(value, node = @root)
-    return node unless node
-
-    case value <=> node.data
-    when -1
-      node.left = delete(value, node.left)
-    when 1
-      node.right = delete(value, node.right)
-    when 0
-      return node.right if node.left.nil?
-      return node.left if node.right.nil?
-
-      node.data = min_value(node.right)
-      node.right = delete(min_value(node.right), node.right)
-    end
-
-    node
+  def delete(value)
+    internal_delete(value)
+    rebalance
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 
   def find(value, node = @root)
     return nil if node.nil?
@@ -126,6 +98,20 @@ class Tree
     check_for_block(node, result, &block)
   end
 
+  def balanced?
+    simulated_rebalance = rebalance(change_root: false)
+    return true if simulated_rebalance == @root
+
+    false
+  end
+
+  def rebalance(change_root: true)
+    nodes = inorder
+    return @root = build_tree(nodes) if change_root
+
+    build_tree(nodes)
+  end
+
   private
 
   def balance_tree(array, first, last)
@@ -139,6 +125,44 @@ class Tree
 
     root
   end
+
+  def internal_insert(value, node = @root)
+    return Node.new(value) if node.nil?
+
+    case value <=> node.data
+    when -1
+      node.left = internal_insert(value, node.left)
+    when 1
+      node.right = internal_insert(value, node.right)
+    when 0
+      node
+    end
+
+    node
+  end
+
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+  def internal_delete(value, node = @root)
+    return node unless node
+
+    case value <=> node.data
+    when -1
+      node.left = internal_delete(value, node.left)
+    when 1
+      node.right = internal_delete(value, node.right)
+    when 0
+      return node.right if node.left.nil?
+      return node.left if node.right.nil?
+
+      node.data = min_value(node.right)
+      node.right = internal_delete(min_value(node.right), node.right)
+    end
+
+    node
+  end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   def queue_level_shift(queue)
     first = queue.first
