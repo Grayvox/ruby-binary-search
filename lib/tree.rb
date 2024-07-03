@@ -80,8 +80,7 @@ class Tree
   def level_order(queue = [@root], result = [], &block)
     return result if queue.empty?
 
-    result << queue.first.data if block_given? && block.call(queue.first.data)
-    result << queue.first.data unless block_given?
+    result = check_for_block(queue.first, result, &block)
     queue = queue_level_shift(queue)
 
     level_order(queue, result, &block)
@@ -92,10 +91,19 @@ class Tree
     result = []
 
     until queue.empty?
-      result << queue.first.data if block_given? && block.call(queue.first.data)
-      result << queue.first.data unless block_given?
+      result = check_for_block(queue.first, result, &block)
       queue = queue_level_shift(queue)
     end
+
+    result
+  end
+
+  def inorder(node = @root, result = [], &block)
+    return if node.nil?
+
+    inorder(node.left, result, &block)
+    result = check_for_block(node, result, &block)
+    inorder(node.right, result, &block)
 
     result
   end
@@ -103,9 +111,7 @@ class Tree
   def preorder(node = @root, result = [], &block)
     return if node.nil?
 
-    result << node.data if block_given? && block.call(node.data)
-    result << node.data unless block_given?
-
+    result = check_for_block(node, result, &block)
     preorder(node.left, result, &block)
     preorder(node.right, result, &block)
 
@@ -134,6 +140,12 @@ class Tree
     queue.shift
 
     queue
+  end
+
+  def check_for_block(node, result, &block)
+    result << node.data if block_given? && block.call(node.data)
+    result << node.data unless block_given?
+    result
   end
 
   def min_value(node, min = node.data)

@@ -10,7 +10,7 @@ The following methods are included in this project:
 - [x] `#delete(value)` -- deletes the value provided if it is in the tree, keeping it balanced afterwards. Returns nil if the value is not found.
 - [x] `#find(value)` -- searches through the tree to find the value provided. Returns nil if the value is not found
 - [x] `#level_order(&block)` -- traverses the tree in breadth-first level order and yields each node to the provided block. Returns an array of values if no block is given. Also uses an array acting as a queue to keep track of all the child nodes that it has yet to traverse and will add new ones to the list when needed. This version uses recursion, while `#level_order_iteration(&block)` uses iteration.
-- [ ] `#inorder(&block)` -- traverses the tree in depth-first using inorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
+- [x] `#inorder(&block)` -- traverses the tree in depth-first using inorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [x] `#preorder(&block)` -- traverses the tree in depth-first using preorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [ ] `#postorder(&block)` -- traverses the tree in depth-first using postorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [ ] `#height(value)` -- accepts the value of a node on the tree and returns its height. Height is defined as the number of edges in longest path from a given node to a leaf node. Returns nil if the value isn't found on the tree.
