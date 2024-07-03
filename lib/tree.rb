@@ -77,6 +77,29 @@ class Tree
     end
   end
 
+  def level_order(queue = [@root], result = [], &block)
+    return result if queue.empty?
+
+    result << queue.first.data if block_given? && block.call(queue.first.data)
+    result << queue.first.data unless block_given?
+    queue = queue_level_shift(queue)
+
+    level_order(queue, result, &block)
+  end
+
+  def level_order_iteration(&block)
+    queue = [@root]
+    result = []
+
+    until queue.empty?
+      result << queue.first.data if block_given? && block.call(queue.first.data)
+      result << queue.first.data unless block_given?
+      queue = queue_level_shift(queue)
+    end
+
+    result
+  end
+
   private
 
   def balance_tree(array, first, last)
@@ -89,6 +112,16 @@ class Tree
     root.right = balance_tree(array, middle + 1, last)
 
     root
+  end
+
+  def queue_level_shift(queue)
+    first = queue.first
+
+    queue.push(first.left) if first.left
+    queue.push(first.right) if first.right
+    queue.shift
+
+    queue
   end
 
   def min_value(node, min = node.data)
