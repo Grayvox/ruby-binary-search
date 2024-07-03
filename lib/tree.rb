@@ -100,6 +100,18 @@ class Tree
     result
   end
 
+  def preorder(node = @root, result = [], &block)
+    return if node.nil?
+
+    result << node.data if block_given? && block.call(node.data)
+    result << node.data unless block_given?
+
+    preorder(node.left, result, &block)
+    preorder(node.right, result, &block)
+
+    result
+  end
+
   private
 
   def balance_tree(array, first, last)
