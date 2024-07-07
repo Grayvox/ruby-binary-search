@@ -13,7 +13,7 @@ The following methods are included in this project:
 - [x] `#inorder(&block)` -- traverses the tree in depth-first using inorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [x] `#preorder(&block)` -- traverses the tree in depth-first using preorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
 - [x] `#postorder(&block)` -- traverses the tree in depth-first using postorder traversal and yields each node to the provided block. Returns an array of values if no block is given.
-- [ ] `#height(value)` -- accepts the value of a node on the tree and returns its height. Height is defined as the number of edges in longest path from a given node to a leaf node. Returns nil if the value isn't found on the tree.
+- [x] `#height(value)` -- accepts the value of a node on the tree and returns its height. Height is defined as the number of edges in longest path from a given node to a leaf node. Returns nil if the value isn't found on the tree.
 - [ ] `#depth(value)` -- accepts the value of a node on the tree  and returns its depth. Depth is defined as the number of edges in path from a given node to the tree’s root node. Returns nil if the value isn't found on the tree.
 - [x] `#balanced?` -- checks if the tree is balanced. A balanced tree is one where the difference between heights of left subtree and right subtree of every node is not more than 1. Returns true or fals.
 - [x] `#rebalance` -- rebalances an unbalanced tree.

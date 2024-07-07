@@ -101,6 +101,16 @@ class Tree
     check_for_block(node, result, &block)
   end
 
+  def height(value, node = find(value))
+    return nil if find(value).nil?
+    return 0 if node.nil? || node.left.nil? && node.right.nil?
+
+    left_height = height(value, node.left)
+    right_height = height(value, node.right)
+
+    [left_height, right_height].max + 1
+  end
+
   def balanced?
     simulated_rebalance = rebalance(change_root: false)
     return true if simulated_rebalance == @root
