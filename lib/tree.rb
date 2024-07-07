@@ -111,6 +111,15 @@ class Tree
     [left_height, right_height].max + 1
   end
 
+  def depth(value, current_node = @root, result = 0)
+    return nil if find(value).nil?
+    return result if value == current_node.data
+
+    return depth(value, current_node.left, result + 1) if value < current_node.data
+
+    depth(value, current_node.right, result + 1) if value > current_node.data
+  end
+
   def balanced?
     simulated_rebalance = rebalance(change_root: false)
     return true if simulated_rebalance == @root

@@ -26,9 +26,9 @@ p(tree.inorder { |element| element != 1 }) # returns all nodes NOT equal to 1 in
 puts '--- #postorder ---'
 p tree.postorder # returns all nodes in postorder
 puts '--- #height ---'
-p tree.height(5) # returns 3, the amount of nodes away it is from the lowest leaf
+p tree.height(5) # returns 3, the amount of nodes it is from the lowest leaf ("height")
 puts '--- #depth ---'
-
+p tree.depth(7) # returns 3, the amount of nodes it is from the root node ("depth")
 puts '--- #balanced? ---'
 p tree.balanced? # returns true
 puts '--- #rebalance ---'
